@@ -1,0 +1,33 @@
+services:
+  auth-service:
+    build: ./backend/auth-service
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/auth-service:/app
+    restart: always
+
+  project-service:
+    build: ./backend/project-service
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./backend/project-service:/app
+    restart: always
+
+  notification-service:
+    build: ./backend/notification-service
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./backend/notification-service:/app
+    restart: always
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: devsync
+    restart: always
